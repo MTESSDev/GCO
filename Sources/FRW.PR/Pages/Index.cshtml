@@ -1,0 +1,168 @@
+﻿@page "{handler?}"
+@model FRW.PR.Extra.Pages.GCO.GCOIndexModel
+@{
+    ViewData["Title"] = "Gestion gabarit";
+    ViewData["CacherIdentification"] = true;
+    ViewData["CacherOnglets"] = true;
+}
+
+@section style{
+    <style>
+
+    </style>
+}
+
+<div>
+    test
+
+    <div id="multiEmbedPdf"></div>
+
+    <button class="btn btn-primaire" id="getFileHandleButton">Extraire</button>
+</div>
+
+@section scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+       let fichierExtrait;
+       let lastModified = 0;
+
+       async function surveiller() {
+           setInterval(async function () { 
+                if (fichierExtrait) {
+                    var file = await fichierExtrait.getFile()
+               
+                    var lt = file.lastModified
+
+                    if (lt > lastModified) { 
+                        lastModified = lt
+                        console.log("Fichier modifié!")
+                        var buffer = await file.arrayBuffer()
+                        maj(_arrayBufferToBase64(buffer))
+                    }
+                } 
+           }, 1000);
+       }
+
+       function _arrayBufferToBase64( buffer ) {
+            var binary = '';
+            var bytes = new Uint8Array( buffer );
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode( bytes[ i ] );
+            }
+            return window.btoa( binary );
+        }
+
+       function maj(fichier){
+         const data = { fichier: fichier }
+
+         document.getElementById("multiEmbedPdf").innerHTML = ""
+
+                axios.post('/api/GCO/RemplirGabaritWord/?type=JPG', data, getHeaders())
+                .then(response => {
+                    const contentType = 'image/jpeg'
+
+                    const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
+                        const byteCharacters = atob(b64Data)
+                        const byteArrays = []
+
+                        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                            const slice = byteCharacters.slice(offset, offset + sliceSize)
+
+                            const byteNumbers = new Array(slice.length)
+                            for (let i = 0; i < slice.length; i++) {
+                                byteNumbers[i] = slice.charCodeAt(i)
+                            }
+
+                            const byteArray = new Uint8Array(byteNumbers)
+                            byteArrays.push(byteArray)
+                        }
+
+                        const blob = new Blob(byteArrays, { type: contentType })
+                        return blob
+                    }
+
+                    //for (let i = 0; i < response.data.length; i++) {
+                        var tmp = response.data.fichier
+
+                        const blob = b64toBlob(tmp, contentType)
+
+                        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                        // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                            window.navigator.msSaveBlob(blob, "fichier")
+                        } else {
+                            var URL = window.URL || window.webkitURL
+                            var blobUrl = URL.createObjectURL(blob)
+
+                            var titre = document.createElement("h3")
+                            titre.innerHTML = "fichier"
+                            document.getElementById("multiEmbedPdf").appendChild(titre)
+
+                            //<embed style="display:none; width:950px; left:0px; height:800px;" id="embedPdf" src="" />
+                            var embedPdf = document.createElement("embed")
+                            embedPdf.setAttribute("width", "950px")
+                            embedPdf.setAttribute("left", "0px")
+                            embedPdf.setAttribute("height", "800px")
+                            embedPdf.setAttribute("style", "1px solid")
+                            embedPdf.setAttribute("src", blobUrl)
+                            embedPdf.setAttribute("id", "fichier")
+                            document.getElementById("multiEmbedPdf").appendChild(embedPdf)
+                        }
+                    //}
+                })
+                .catch(error => {
+                    console.log(error.response.data)
+                    journaliserErreurJs(error)
+                })
+       }
+
+       getFileHandleButton.addEventListener("click", extraireFichier);
+		    /*writeFileButton.addEventListener("click", _ => {*/
+			    /*writeFile(fileHandle, textArea.value).
+				    then(function () {
+					    info.textContent = "🎉 Successfully saved to disk!"
+				    })
+		});*/
+
+	    async function extraireFichier(fileHandle, contents) {
+			    fichierExtrait = await window.showSaveFilePicker({
+                                  suggestedName: 'J08.docx',
+
+                                  types: [{
+                                    description: 'Gabarit Word',
+                                    accept: {
+                                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+                                    },
+                                  }],
+                                });
+
+                var file = await fichierExtrait.getFile()
+
+                window.location.href = 'ouvrirword:C:\\Users\\cotda05\\OneDrive\\Documents\\' + file.name;
+               //const writable = await fichierExtrait.createWritable()
+               //   await writable.write(blob)
+               //   await writable.close()
+		    }
+
+      /* function getFileHandle(){
+           fichierExtrait = await window.showSaveFilePicker({
+                                  suggestedName: 'J08.docx',
+                                  types: [{
+                                    description: 'Gabarit Word',
+                                    accept: {
+                                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+                                    },
+                                  }],
+                                });
+        }*/
+       function getHeaders() {
+            return { headers: { "Accept-Language": true ? "fr-CA,fr;" : "en-CA,en;" } }
+       }
+
+      surveiller();
+
+    </script>
+
+}
