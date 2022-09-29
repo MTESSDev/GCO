@@ -46,8 +46,15 @@ namespace FRW.PR.Extra.Controllers
             {
                 Gabarit = Convert.FromBase64String(json.GetProperty("fichier").GetString()),
                 Donnees = new Dictionary<string, object>() { 
-                            { "prenom", "Alexandre" }, 
-                            { "nom", "Poulin" }, 
+                            { "prenom", "Réjeanne" }, 
+                            { "nom", "Nadeau" }, 
+                            { "noCivique", "249" }, 
+                            { "rue", "rue De l'union" }, 
+                            { "ville", "Québec" }, 
+                            { "province", "QC" }, 
+                            { "codePostal", "G01 9K6" }, 
+                            { "date_emission", new DateTime(2022,09,02) }, 
+                            { "montant", 2154.54m }, 
                             { "dateProd", DateTime.Now } },
                 Options = new Options() { NomFichier = "test." + type }
             });
