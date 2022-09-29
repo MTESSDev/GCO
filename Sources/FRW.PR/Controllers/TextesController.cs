@@ -54,11 +54,11 @@ namespace FRW.PR.Extra.Controllers
                 };
             }
 
-            var textes = await _texteEditeService.ObtenirValeursAsync(langue, textesQuery);
+            //var textes = await _texteEditeService.ObtenirValeursAsync(langue, textesQuery);
 
-            var retour = new StringBuilder($"const textesI18n = {{ \r\n {langue}: ");
+            var retour = new StringBuilder($"const textesI18n = {{ \r\n fr: ");
 
-            retour.Append(textes.ToJsObj(langue)).Append("\r\n}");
+            retour.Append("".ToJsObj(langue)).Append("\r\n}");
 
             return Content(retour.ToString(), "text/javascript;charset=UTF-8");
         }

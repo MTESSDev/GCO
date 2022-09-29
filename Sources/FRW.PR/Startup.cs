@@ -139,7 +139,8 @@ namespace FRW.PR.Extra
         {
             // Actions sp�cifiques pour le developpement/prod
             if (!Configuration.GetValue<bool>("estProduction"))
-                app.UseDevcfgMiddleware();
+                //app.UseDevcfgMiddleware();
+                {}
             else
                 app.UseHsts();
 
