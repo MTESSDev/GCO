@@ -1,9 +1,7 @@
 using FRW.PR.Extra.Extensions;
-using FRW.PR.Extra.Middlewares;
 using FRW.PR.Extra.Services;
 using FRW.PR.Extra.Utils;
 using FRW.PR.Extranet.Utils.Swagger;
-using FRW.PR.Services;
 using FRW.PR.Utils.Culture;
 using FRW.TR.Commun.Http;
 using FRW.TR.Commun.Services;
@@ -47,17 +45,15 @@ namespace FRW.PR.Extra
 
             services.ConfigureRequestLocalization();
 
-            services.AddScoped<IContexteDevAccesseur, ContexteDevAccesseur>();
             services.AddSingleton<IVueParser>(new VueParser());
-            services.AddSingleton<AuthService>();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                            .AddCookie(options =>
                            {
                                options.Cookie.Name = "FRWSessions";
                                options.Cookie.SameSite = SameSiteMode.Lax;
                                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                           });
+                           });*/
 
             services.AddControllers();
             services.AddRazorPages()
@@ -81,22 +77,14 @@ namespace FRW.PR.Extra
                         {
                             return FrwHttpMessageHandler.CreerMessageHandler(Configuration.GetValue<string>("FRW:NomCertificatClientProxy"));
                         });
-            services.AddSingleton<IFormulairesService, FormulairesService>();
-            services.AddScoped<IConfigurationApplication, ConfigurationApplicationPR>();
-            services.AddSingleton<ISystemeAutoriseService, SystemeAutoriseService>();
 
             services.AddSingleton<IJournalisationService, JournalisationService>();
-            services.AddSingleton<ISessionService, SessionService>();
-            services.AddSingleton<ISuiviEtatService, SuiviEtatService>();
-            services.AddSingleton<ITexteEditeService, TexteEditeService>();
-            services.AddSingleton<IRIRService, RIRService>();
 
             services.AddSingleton<IStringLocalizer, YamlStringLocalizer>();
             services.AddSingleton<IStringLocalizerFactory, YamlStringLocalizerFactory>();
             services.AddSingleton<IHtmlLocalizer, YamlHtmlLocalizer>();
             services.AddSingleton<IHtmlLocalizerFactory, YamlHtmlLocalizerFactory>();
 
-            services.AddSingleton<TransmissionDocumentsService>();
             services.AddSingleton<IDocLib>(DocLib.Instance);
 
             services.AddHsts(options =>
@@ -105,12 +93,13 @@ namespace FRW.PR.Extra
                 options.MaxAge = TimeSpan.FromDays(365);
             });
 
-            var hosts = Configuration["AllowedHosts"]?
+            /*var hosts = Configuration["AllowedHosts"]?
                    .Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             if (hosts?.Length > 0)
             {
                 services.Configure<HostFilteringOptions>(options => options.AllowedHosts = hosts);
-            }
+            }*/
+
             if (bool.TryParse(Configuration["estProduction"], out var estProd) && !estProd)
             {
                 // Ajout d'un document 
@@ -121,7 +110,7 @@ namespace FRW.PR.Extra
                         Title = "FRW.PR.Extra",
                         Version = "v1",
                         Description = "Service PR FRW.",
-                        Contact = new OpenApiContact() { Name = "�quipe DTN" }
+                        Contact = new OpenApiContact() { Name = "Équipe DTN" }
                     });
 
                     // Set the comments path for the Swagger JSON and UI.

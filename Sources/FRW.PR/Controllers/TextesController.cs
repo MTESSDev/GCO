@@ -24,13 +24,10 @@ namespace FRW.PR.Extra.Controllers
     public class TextesController : Controller
     {
         private readonly ILogger _log = Log.ForContext<TextesController>();
-        private readonly IFormulairesService _formService;
-        private readonly ITexteEditeService _texteEditeService;
 
-        public TextesController(ITexteEditeService texteEditeService, IFormulairesService formService)
+        public TextesController()
         {
-            _texteEditeService = texteEditeService;
-            _formService = formService;
+
         }
 
         [HttpGet("{langue}/{systemeAutorise:int?}/{typeFormulaire?}/{version?}")]

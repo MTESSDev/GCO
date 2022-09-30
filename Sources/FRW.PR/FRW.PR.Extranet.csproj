@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="schemas\formTemplate.vue" />
     <None Remove="src\externe\lifecycle\lifecycle.es5.js" />
     <None Remove="src\externe\vue-i18n\vue-i18n.min.js" />
     <None Remove="src\externe\vueFormulate\en.js" />
@@ -53,9 +52,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="schemas\formTemplate.vue">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="src\externe\lifecycle\lifecycle.es5.js">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

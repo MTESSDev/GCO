@@ -17,14 +17,14 @@ namespace FRW.PR.Extra.Services
         private static ILogger FrwLog => Log.ForContext<YamlStringLocalizer>();
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        private ITexteEditeService TexteEditeService
+        /*private ITexteEditeService TexteEditeService
         {
             get
             {
                 return (ITexteEditeService)_httpContextAccessor.HttpContext.RequestServices.GetService(typeof(ITexteEditeService));
             }
         }
-
+*/
         public YamlStringLocalizer(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
@@ -56,7 +56,7 @@ namespace FRW.PR.Extra.Services
         {
             get
             {
-                var texteEdite = TexteEditeService.ObtenirValeurAsync(CultureInfoExtensions.LangueUtilisateur, idTexteEdite, null).Result;
+                var texteEdite = ""; //TexteEditeService.ObtenirValeurAsync(CultureInfoExtensions.LangueUtilisateur, idTexteEdite, null).Result;
                 
                 return new LocalizedString(idTexteEdite, texteEdite ?? idTexteEdite);
             }
@@ -68,7 +68,7 @@ namespace FRW.PR.Extra.Services
             {
                 var parameters = SeparerTexteQueryObject(mixedArguments);
 
-                var texteEdite = TexteEditeService.ObtenirValeurAvecRemplacementAsync(CultureInfoExtensions.LangueUtilisateur, idTexteEdite, parameters.texteEditeQuery, parameters.arguments).Result;
+                var texteEdite = ""; //TexteEditeService.ObtenirValeurAvecRemplacementAsync(CultureInfoExtensions.LangueUtilisateur, idTexteEdite, parameters.texteEditeQuery, parameters.arguments).Result;
                 var textFormat = Smart.CreateDefaultSmartFormat();
 
                 textFormat.Settings.FormatErrorAction = SmartFormat.Core.Settings.ErrorAction.MaintainTokens;

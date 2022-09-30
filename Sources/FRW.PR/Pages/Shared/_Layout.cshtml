@@ -58,8 +58,7 @@
     <meta name="theme-color" content="#fff" />
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <title>@(await Config.ObtenirValeur("title"))</title>
-
+    <title>Gestion des correspondances</title>
 
     @* Charger le polyfill pour le support des variables css uniquement si requis. *@
     <script>
@@ -155,11 +154,11 @@
 
 
 
-                                            @if(await Config.ObtenirValeur<bool>("piv.nousJoindre.actif"))
+                                            @if(false)
                                             {
                                                 <li>                                                
-                                                    <a href="@(await Config.ObtenirValeur("piv.nousJoindre.urlLien"))" target="_blank">
-                                                        @(await Config.ObtenirValeur("piv.nousJoindre.texte"))
+                                                    <a href="#" target="_blank">
+                                                        Nous joindre
                                                         <span class="utd-sr-only">@Localizer["layout.srOuvertureLienNouvelleFenetre"]</span>
                                                     </a>
                                                 </li>                                                                                
@@ -276,8 +275,8 @@
                 <div class="container">
                     <div class="row no-gutters">
                         <div class="col-12 d-flex align-items-center justify-content-center" lang="fr">
-                            <a href="@(await Config.ObtenirValeur("piv.piedPage.logo.urlLien"))" target="_blank" rel="noopener">
-                                <img id="logoFooter" alt="@(await Config.ObtenirValeur("piv.piedPage.logo.alt"))@Localizer["layout.srOuvertureLienNouvelleFenetre"]" src="@(await Config.ObtenirValeur("piv.piedPage.logo.base64"))" width="@(await Config.ObtenirValeur("piv.piedPage.logo.width"))" height="@(await Config.ObtenirValeur("piv.piedPage.logo.height"))">
+                            <a href="#" target="_blank" rel="noopener">
+                                <img id="logoFooter" alt="" src="#" width="100px" height="20px">
                             </a>
                         </div>
                         <div class="col-12 d-flex align-items-center justify-content-center utd-text-xs">
