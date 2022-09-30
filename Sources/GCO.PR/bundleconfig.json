@@ -84,6 +84,7 @@
   {
     "outputFileName": "src/temp/dtables.min.js",
     "inputFiles": [
+      "src/externe/jquery-highlight/jquery.highlight.js",
       "src/externe/dataTables/french.js",
       "src/externe/dataTables/english.js",
       "src/externe/dataTables/datatables-plugins.js",

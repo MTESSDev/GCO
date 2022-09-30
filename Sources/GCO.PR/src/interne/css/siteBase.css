@@ -1052,6 +1052,11 @@ table.dataTable {
     div.dataTables_filter{
         margin-bottom: 8px;
     }
+
+    div.dataTables_filter input {
+        font-family: OpenSans-Regular;
+    }
+
     div.dataTables_wrapper div.dataTables_filter input:focus {
         margin-left: 6px;
     }
@@ -1443,5 +1448,12 @@ ul li:last-child {
 }
 
 
+/*====================================================================================================*/
+/*  -999- Divers
+/*====================================================================================================*/
+
+.highlight {
+    background-color: var(--couleur-avertissement);
+}
 
 
