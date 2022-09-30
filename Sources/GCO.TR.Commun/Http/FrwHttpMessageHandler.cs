@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace GCO.TR.Commun.Http
 {
-    public static class FrwHttpMessageHandler
+    public static class GcoHttpMessageHandler
     {
         public static readonly string CleEnteteHttpUrlServiceBackEnd = "X-BACKEND-URL";
 

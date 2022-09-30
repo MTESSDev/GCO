@@ -21,17 +21,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="FRW.SV.GestionFormulaires\**" />
-    <Compile Remove="mapping\**" />
-    <Content Remove="FRW.SV.GestionFormulaires\**" />
-    <Content Remove="mapping\**" />
-    <EmbeddedResource Remove="FRW.SV.GestionFormulaires\**" />
-    <EmbeddedResource Remove="mapping\**" />
-    <None Remove="FRW.SV.GestionFormulaires\**" />
-    <None Remove="mapping\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Utils\Class.cs" />
   </ItemGroup>
 
@@ -118,14 +107,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="form - Copier %282%29.vue">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FRW.TR.Commun\FRW.TR.Commun.csproj" />
-    <ProjectReference Include="..\FRW.TR.Contrats\FRW.TR.Contrats.csproj" />
+    <ProjectReference Include="..\GCO.TR.Commun\GCO.TR.Commun.csproj" />
+    <ProjectReference Include="..\GCO.TR.Contrats\GCO.TR.Contrats.csproj" />
   </ItemGroup>
 
   <ItemGroup>

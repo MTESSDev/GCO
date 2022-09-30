@@ -53,9 +53,9 @@ namespace GCO.PR.Services
 
         public async Task<TRecevoir> EnvoyerRecevoir<TEnvoyer, TRecevoir>(HttpMethod method, TEnvoyer envoyer, string serviceDestination, string addresseApi, [CallerMemberName] string appelant = "") where TEnvoyer : class
         {
-            _httpContextAccessor.HttpContext.Request.Headers.TryGetValue(FrwHttpMessageHandler.CleEnteteHttpUrlServiceBackEnd, out var urlDorsaleEnteteHttp);
+            _httpContextAccessor.HttpContext.Request.Headers.TryGetValue(GcoHttpMessageHandler.CleEnteteHttpUrlServiceBackEnd, out var urlDorsaleEnteteHttp);
 
-            var urlDorsale = string.IsNullOrWhiteSpace(urlDorsaleEnteteHttp.ToString()) ? _configuration["FRW:UrlDorsale"] : urlDorsaleEnteteHttp.ToString();
+            var urlDorsale = string.IsNullOrWhiteSpace(urlDorsaleEnteteHttp.ToString()) ? _configuration["GCO:UrlDorsale"] : urlDorsaleEnteteHttp.ToString();
             var uriComplete = urlDorsale + "/" + serviceDestination + addresseApi;
 
             TRecevoir recevoir = default(TRecevoir);
@@ -87,7 +87,7 @@ namespace GCO.PR.Services
 
                 if (!string.IsNullOrWhiteSpace(urlDorsaleEnteteHttp.ToString()))
                 {
-                    httpRequestMessage.Headers.Add(FrwHttpMessageHandler.CleEnteteHttpUrlServiceBackEnd, urlDorsaleEnteteHttp.ToString());
+                    httpRequestMessage.Headers.Add(GcoHttpMessageHandler.CleEnteteHttpUrlServiceBackEnd, urlDorsaleEnteteHttp.ToString());
                 }
 
                 //Rediriger l'ip de l'appelant original au backend

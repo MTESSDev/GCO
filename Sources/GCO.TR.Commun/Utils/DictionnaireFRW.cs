@@ -13,13 +13,13 @@ using System.Text.RegularExpressions;
 namespace GCO.TR.Commun.Utils
 {
     /// <summary>
-    /// Dictionnaire maison pour charger le JSON de FRW (permet de remplacer les clées qui contiennent des [0] et autres)
+    /// Dictionnaire maison pour charger le JSON de GCO (permet de remplacer les clées qui contiennent des [0] et autres)
     /// </summary>
-    public class DictionnaireFRW<TKey, TValue> : IDictionary<TKey, TValue> where TKey : notnull
+    public class DictionnaireGCO<TKey, TValue> : IDictionary<TKey, TValue> where TKey : notnull
     {
         private readonly Dictionary<TKey, TValue> _dictionnaire;
 
-        public DictionnaireFRW()
+        public DictionnaireGCO()
         {
             _dictionnaire = new Dictionary<TKey, TValue>();
         }

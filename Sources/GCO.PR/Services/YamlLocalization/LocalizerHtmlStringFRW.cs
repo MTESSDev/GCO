@@ -10,19 +10,19 @@ namespace GCO.PR.Services.YamlLocalization
     /// Puisque le localizer de base en HTML plante quand le string contient {0} ...
     /// la solution est dans la branche "workaround" sur le github du dude
     /// </summary>
-    public class LocalizerHtmlStringFRW : LocalizedHtmlString, IHtmlContent
+    public class LocalizerHtmlStringGCO : LocalizedHtmlString, IHtmlContent
     {
         private bool _hasArguments;
 
-        public LocalizerHtmlStringFRW(string name, string value) : base(name, value)
+        public LocalizerHtmlStringGCO(string name, string value) : base(name, value)
         {
         }
 
-        public LocalizerHtmlStringFRW(string name, string value, bool isResourceNotFound) : base(name, value, isResourceNotFound)
+        public LocalizerHtmlStringGCO(string name, string value, bool isResourceNotFound) : base(name, value, isResourceNotFound)
         {
         }
 
-        public LocalizerHtmlStringFRW(string name, string value, bool isResourceNotFound, object[] arguments) : base(name, value, isResourceNotFound, arguments)
+        public LocalizerHtmlStringGCO(string name, string value, bool isResourceNotFound, object[] arguments) : base(name, value, isResourceNotFound, arguments)
         {
             _hasArguments = true;
         }

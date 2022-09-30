@@ -17,20 +17,20 @@ namespace GCO.TR.Commun.Services
         public LogEventLevel MinimumLogLevel { get; set; }
     }
 
-    public class FrwLogLevelService : IHostedService, IDisposable
+    public class GcoLogLevelService : IHostedService, IDisposable
     {
-        protected static readonly ILogger Log = Serilog.Log.ForContext<FrwLogLevelService>();
+        protected static readonly ILogger Log = Serilog.Log.ForContext<GcoLogLevelService>();
         private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
         private readonly HttpMessageHandler _httpMessageHandler;
         private readonly LoggingLevelSwitch _loggingLevelSwitch;
         //private Timer? _timer;
 
-        public FrwLogLevelService(IConfiguration configuration, LoggingLevelSwitch loggingLevelSwitch)
+        public GcoLogLevelService(IConfiguration configuration, LoggingLevelSwitch loggingLevelSwitch)
         {
             _configuration = configuration;
             _loggingLevelSwitch = loggingLevelSwitch;
-            _httpMessageHandler = FrwHttpMessageHandler.CreerMessageHandler(configuration.GetValue<string>("FRW:NomCertificatClientProxy"));
+            _httpMessageHandler = GcoHttpMessageHandler.CreerMessageHandler(configuration.GetValue<string>("GCO:NomCertificatClientProxy"));
             _httpClient = new HttpClient(_httpMessageHandler);
         }
 
@@ -82,11 +82,11 @@ namespace GCO.TR.Commun.Services
 
         public async Task<T> Recevoir<T>(T defaultValue, string serviceDestination, string addresseApi)
         {
-            var urlDorsale = _configuration["FRW:UrlDorsale"];
+            var urlDorsale = _configuration["GCO:UrlDorsale"];
 
             if (string.IsNullOrWhiteSpace(urlDorsale))
             {
-                throw new ArgumentException("_configuration[FRW:UrlDorsale] configuration introuvable.");
+                throw new ArgumentException("_configuration[GCO:UrlDorsale] configuration introuvable.");
             }
 
             var uriComplete = urlDorsale + "/" + serviceDestination + addresseApi;

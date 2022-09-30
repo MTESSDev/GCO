@@ -15,7 +15,7 @@ namespace GCO.TR.Commun.Services
     {
         private readonly IDorsale _dorsale;
         private IHttpContextAccessor _httpContextAccessor;
-        protected const string ServiceExterne = "FRW.SV.GestionFormulaires";
+        protected const string ServiceExterne = "GCO.SV.GestionFormulaires";
 
         public JournalisationServiceBase(IDorsale dorsale, IHttpContextAccessor httpAccessor)
         {

@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FRW.TR.Contrats\FRW.TR.Contrats.csproj" />
+    <ProjectReference Include="..\GCO.TR.Contrats\GCO.TR.Contrats.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ namespace GCO.TR.Commun.Utils
     /// Convertisseur JSON maison pour Json.NET, force la conversion récursive en Dictionnaire.
     /// Peut aussi parser les valeurs du modèle selon le type de la configuration (liste de composants reçue en entrée)
     /// </summary>
-    public class ConvertisseurFRW : CustomCreationConverter<IDictionary<object, object>>
+    public class ConvertisseurGCO : CustomCreationConverter<IDictionary<object, object>>
     {
         private readonly List<ComponentBinding>? _composants;
 
@@ -22,7 +22,7 @@ namespace GCO.TR.Commun.Utils
         /// Convertisseur JSON de dictionnaires
         /// </summary>
         /// <param name="composants">Liste des composants (optionnels) pour changer le type des données selon la config.</param>
-        public ConvertisseurFRW(List<ComponentBinding>? composants = null)
+        public ConvertisseurGCO(List<ComponentBinding>? composants = null)
         {
             _composants = composants;
         }

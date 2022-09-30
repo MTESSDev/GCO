@@ -469,7 +469,7 @@ form h2 {
     margin-bottom: 1rem;
 }
 
-/* TODO voir l'utilité de ça dans ECS... Nous cause problème dans FRW et ne devrait pas faire parti d'un css de base.
+/* TODO voir l'utilité de ça dans ECS... Nous cause problème dans GCO et ne devrait pas faire parti d'un css de base.
 form h4:first-of-type {
     margin-top: 0;
 }*/

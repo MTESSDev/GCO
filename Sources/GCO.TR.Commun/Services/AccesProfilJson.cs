@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace GCO.TR.Commun.Services
 {
-    public class AccesProfilJson : AccesProfilBase, IProfilFRW
+    public class AccesProfilJson : AccesProfilBase, IProfilGCO
     {
         private readonly IConfiguration _config;
 

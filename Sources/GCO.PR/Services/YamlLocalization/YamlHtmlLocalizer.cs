@@ -60,23 +60,23 @@ namespace GCO.PR.Services
             return new YamlHtmlLocalizer(_localizer);
         }
 
-        protected virtual LocalizerHtmlStringFRW ToHtmlString(LocalizedString result)
+        protected virtual LocalizerHtmlStringGCO ToHtmlString(LocalizedString result)
         {
             if (result is null)
             {
                 throw new ArgumentNullException(nameof(result));
             }
-            return new LocalizerHtmlStringFRW(result.Name, result.Value, result.ResourceNotFound);
+            return new LocalizerHtmlStringGCO(result.Name, result.Value, result.ResourceNotFound);
         }
 
-        protected virtual LocalizerHtmlStringFRW ToHtmlString(LocalizedString result, object[] arguments)
+        protected virtual LocalizerHtmlStringGCO ToHtmlString(LocalizedString result, object[] arguments)
         {
             if (result is null)
             {
                 throw new ArgumentNullException(nameof(result));
             }
 
-            return new LocalizerHtmlStringFRW(result.Name, result.Value, result.ResourceNotFound, arguments);
+            return new LocalizerHtmlStringGCO(result.Name, result.Value, result.ResourceNotFound, arguments);
         }
     }
 }

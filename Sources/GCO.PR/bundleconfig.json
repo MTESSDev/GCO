@@ -133,7 +133,7 @@
       "src/externe/axios/axios.min.js",
       "src/externe/lifecycle/lifecycle.es5.js",
       "src/temp/base.min.js",
-      "src/externe/utd/utd-webcomponents.min.js",
+      "src/externe/utd/utd-webcomponents.min.js"
     ],
     "minify": {
       "enabled": false

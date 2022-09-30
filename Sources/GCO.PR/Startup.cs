@@ -50,7 +50,7 @@ namespace GCO.PR
             /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                            .AddCookie(options =>
                            {
-                               options.Cookie.Name = "FRWSessions";
+                               options.Cookie.Name = "GCOSessions";
                                options.Cookie.SameSite = SameSiteMode.Lax;
                                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                            });*/
@@ -64,7 +64,7 @@ namespace GCO.PR
                         })
                     .AddRazorRuntimeCompilation();
 
-            services.AddDataProtection(options => options.ApplicationDiscriminator = "FRW")
+            services.AddDataProtection(options => options.ApplicationDiscriminator = "GCO")
                     .AddKeyManagementOptions(options =>
                     {
                         //options.XmlRepository = new ApiXmlRepository(Configuration);
@@ -75,7 +75,7 @@ namespace GCO.PR
             services.AddHttpClient<IDorsale, Dorsale>()
                         .ConfigurePrimaryHttpMessageHandler(() =>
                         {
-                            return FrwHttpMessageHandler.CreerMessageHandler(Configuration.GetValue<string>("FRW:NomCertificatClientProxy"));
+                            return GcoHttpMessageHandler.CreerMessageHandler(Configuration.GetValue<string>("GCO:NomCertificatClientProxy"));
                         });
 
             services.AddSingleton<IJournalisationService, JournalisationService>();
@@ -107,9 +107,9 @@ namespace GCO.PR
                 {
                     c.SwaggerDoc("v1", new OpenApiInfo
                     {
-                        Title = "FRW.PR",
+                        Title = "GCO.PR",
                         Version = "v1",
-                        Description = "Service PR FRW.",
+                        Description = "Service PR GCO.",
                         Contact = new OpenApiContact() { Name = "Équipe DTN" }
                     });
 
@@ -143,7 +143,7 @@ namespace GCO.PR
             {
                 app.UseWhen(x => x.Request.Path.Value.Contains("/api/"), builder =>
                 {
-                    builder.UseFrwApiExceptionHandler();
+                    builder.UseGcoApiExceptionHandler();
                 });
 
                 app.UseWhen(x => x.Request.Path.Value.StartsWith("/en/") && !x.Request.Path.Value.Contains("/api/"), builder =>
@@ -187,7 +187,7 @@ namespace GCO.PR
                 // Swagger-ui (HTML, JS, CSS, etc.), 
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "FRW.PR");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "GCO.PR");
                 });
             }
 
@@ -197,7 +197,7 @@ namespace GCO.PR
                 endpoints.MapGet("/offline.htm", async context =>
                 {
                     context.Response.StatusCode = 404;
-                    await context.Response.WriteAsync($"Serveur: {Environment.MachineName}\r\nDorsale: {Configuration.GetValue<string>("FRW:UrlDorsale")}\r\nX-NLB: {context.Request.Headers["X-NLB"]}\r\nX-NLB2: {context.Request.Headers["X-NLB2"]}");
+                    await context.Response.WriteAsync($"Serveur: {Environment.MachineName}\r\nDorsale: {Configuration.GetValue<string>("GCO:UrlDorsale")}\r\nX-NLB: {context.Request.Headers["X-NLB"]}\r\nX-NLB2: {context.Request.Headers["X-NLB2"]}");
                 });
 
                 endpoints.MapDefaultControllerRoute();

@@ -17,7 +17,7 @@ namespace GCO.TR.Commun.Services
         private readonly HttpMessageHandler _httpMessageHandler;
         private readonly HttpClient _httpClient;
 
-        private const string ServiceExterne = "FRW.SV.GestionFormulaires";
+        private const string ServiceExterne = "GCO.SV.GestionFormulaires";
         private RetryPolicy policy = Policy.Handle<Exception>().WaitAndRetryForever(
             sleepDurationProvider: attempt => TimeSpan.FromMilliseconds(500));
 
@@ -25,10 +25,10 @@ namespace GCO.TR.Commun.Services
         {
             if (configuration is null) { throw new ArgumentNullException(nameof(configuration)); }
 
-            _httpMessageHandler = FrwHttpMessageHandler.CreerMessageHandler(configuration.GetValue<string>("FRW:NomCertificatClientProxy"));
+            _httpMessageHandler = GcoHttpMessageHandler.CreerMessageHandler(configuration.GetValue<string>("GCO:NomCertificatClientProxy"));
             _httpClient = new HttpClient(_httpMessageHandler)
             {
-                BaseAddress = new Uri(configuration["FRW:UrlDorsale"])
+                BaseAddress = new Uri(configuration["GCO:UrlDorsale"])
             };
             _httpClient.DefaultRequestHeaders.Add("Accept", "text/xml");
         }

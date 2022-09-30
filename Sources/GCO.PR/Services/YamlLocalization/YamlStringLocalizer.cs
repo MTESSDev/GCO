@@ -14,7 +14,7 @@ namespace GCO.PR.Services
 {
     public class YamlStringLocalizer : IStringLocalizer
     {
-        private static ILogger FrwLog => Log.ForContext<YamlStringLocalizer>();
+        private static ILogger GcoLog => Log.ForContext<YamlStringLocalizer>();
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         /*private ITexteEditeService TexteEditeService
@@ -76,11 +76,11 @@ namespace GCO.PR.Services
 
                 textFormat.OnFormattingFailure += (sender, args) =>
                 {
-                    FrwLog.Erreur(nameof(LocalizedString), args, $"Texte édité '{idTexteEdite}' en erreur. Position : {args.ErrorIndex}");
+                    GcoLog.Erreur(nameof(LocalizedString), args, $"Texte édité '{idTexteEdite}' en erreur. Position : {args.ErrorIndex}");
                 };
                 textFormat.Parser.OnParsingFailure += (sender, args) =>
                 {
-                    FrwLog.Erreur(nameof(LocalizedString), args, $"Texte édité '{idTexteEdite}' en erreur.");
+                    GcoLog.Erreur(nameof(LocalizedString), args, $"Texte édité '{idTexteEdite}' en erreur.");
                 };
 
                 return new LocalizedString(idTexteEdite, textFormat.Format(texteEdite, parameters.arguments));

@@ -19,7 +19,7 @@ namespace GCO.PR.Extensions
         /// Gestion des exceptions dans les API
         /// </summary>
         /// <param name="app"></param>
-        public static void UseFrwApiExceptionHandler(this IApplicationBuilder app)
+        public static void UseGcoApiExceptionHandler(this IApplicationBuilder app)
         {
             app.UseExceptionHandler(appError =>
             {
