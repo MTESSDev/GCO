@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
-namespace GCO.PRnet.Pages
+namespace GCO.PR.Pages
 {
     public class PafModel : PageModel
     {

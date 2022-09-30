@@ -2,7 +2,7 @@
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
 
-namespace GCO.PRnet.Utils.Swagger
+namespace GCO.PR.Utils.Swagger
 {
     public class JsonContentFilter : IOperationFilter
     {

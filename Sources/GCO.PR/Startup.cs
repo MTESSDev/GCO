@@ -1,7 +1,7 @@
 using GCO.PR.Extensions;
 using GCO.PR.Services;
 using GCO.PR.Utils;
-using GCO.PRnet.Utils.Swagger;
+using GCO.PR.Utils.Swagger;
 using GCO.PR.Utils.Culture;
 using GCO.TR.Commun.Http;
 using GCO.TR.Commun.Services;

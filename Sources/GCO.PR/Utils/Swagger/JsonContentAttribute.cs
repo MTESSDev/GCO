@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GCO.PRnet.Utils.Swagger
+namespace GCO.PR.Utils.Swagger
 {
     public class JsonContentAttribute : Attribute
     {

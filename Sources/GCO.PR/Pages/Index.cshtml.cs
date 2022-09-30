@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace GCO.PR.Pages.GCO
+namespace GCO.PR.Pages
 {
     public class GCOIndexModel : PageModel
     {
