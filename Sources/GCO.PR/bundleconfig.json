@@ -22,6 +22,7 @@
   {
     "outputFileName": "wwwroot/css/base.min.css",
     "inputFiles": [
+      "src/externe/fontawesome/css/all.min.css",
       "src/externe/dataTables/datatables.min.css",
       "src/temp/base.min.css"
     ],

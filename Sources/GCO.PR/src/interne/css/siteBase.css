@@ -484,6 +484,8 @@ input:not([type="button"]), select, textarea, .form-control {
     color: var(--couleur-texte-base);
 }
 
+
+
 /* TODO modifier dans ECS */
 ::placeholder, .form-control::placeholder {
     color: #647287 !important;
@@ -1002,6 +1004,188 @@ table.row-clickable > tbody > tr {
     border: 1px solid #dee2e6;
 }
 
+/* Visuel de base pour les tables */
+table.base {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    word-break: break-word;
+}
+
+table.base, table.base.dataTable {
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+
+table.base th, table.base td {
+    border-top: 0;
+    padding: 16px;
+}
+
+table.base thead th {
+    border: 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+table.base th:first-child, table.base td:first-child {
+    padding-left: 8px;
+}
+
+table.base th:last-child, table.base td:last-child {
+    padding-right: 8px;
+}
+
+table.base td {
+    border-bottom: 1px solid var(--couleur-filet-secondaire);
+}
+
+/*====================================================================================================*/
+/*  -81- DataTables 
+/*====================================================================================================*/
+table.dataTable {
+    border-collapse: collapse !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+    div.dataTables_filter{
+        margin-bottom: 8px;
+    }
+    div.dataTables_wrapper div.dataTables_filter input:focus {
+        margin-left: 6px;
+    }
+
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:after {
+        font-family: 'Font Awesome 5 Free' !important; /*rdatatable*/
+        font-weight: 900;
+    }
+
+    table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+        display: none !important;
+    }
+
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_desc:after {
+        opacity: 1 !important; /*rdatatable*/
+    }
+
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:after {
+        opacity: 0.5 !important; /*rdatatable*/
+    }
+
+    table.dataTable thead .sorting:after {
+        content: '\f0dc' !important /*rdatatable*/
+    }
+
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc_disabled:after {
+        content: '\f0de' !important /*rdatatable*/
+    }
+
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc_disabled:after {
+        content: '\f0dd' !important /*rdatatable*/
+    }
+
+
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before,
+    table.dataTable thead .sorting_desc_disabled:after {
+        position: relative;
+        bottom: inherit;
+        display: inline;
+        opacity: 0.8;
+        right: inherit;
+        margin-left: 5px;
+    }
+
+
+    table.dataTable thead > tr > th.sorting_asc,
+    table.dataTable thead > tr > th.sorting_desc,
+    table.dataTable thead > tr > th.sorting,
+    table.dataTable thead > tr > td.sorting_asc,
+    table.dataTable thead > tr > td.sorting_desc,
+    table.dataTable thead > tr > td.sorting {
+        padding-right: 8px;
+    }
+
+
+    table.dataTable.table-sm .sorting:after,
+    table.dataTable.table-sm .sorting_asc:after,
+    table.dataTable.table-sm .sorting_desc:after {
+        top: inherit;
+    }
+
+
+    /* Alignement des listes à puces dans une cellule de tableau */
+    table.dataTable td ul {
+        padding-left: 16px;
+        margin-bottom: 0;
+    }
+
+nav.dataTables_paginate {
+    display: flex;
+    justify-content: flex-end;
+}
+
+ul.pagination {
+    flex-wrap: wrap;
+    justify-content: center !important;
+    margin-top: 24px;
+}
+
+    ul.pagination li {
+        margin-right: 16px;
+    }
+
+        ul.pagination li:last-of-type {
+            margin-right: 0;
+        }
+
+/* Pagination, ne pas afficher les boutons inactifs (ex. Première si on est sur la 1ère page)*/
+.paginate_button.disabled {
+    display: none;
+}
+
+/* Pagination, pas de coins arrondis pour le 1er et dernier boutons */
+.page-item:first-child .page-link, .page-item:last-child .page-link {
+    border-radius: 0;
+}
+
+
+ul.pagination a.page-link {
+    color: var(--couleur-liens);
+    text-decoration: none;
+}
+
+ul.pagination li.active a.page-link, ul.pagination li.active span.page-link {
+    background-color: var(--couleur-texte-base);
+    border-color: var(--couleur-texte-base);
+    font-weight: 600;
+}
+
+
+    ul.pagination li.active span.page-link:hover {
+        cursor: inherit;
+    }
+
+ul.pagination a.page-link:focus {
+    text-decoration: none;
+}
 
 
 /*====================================================================================================*/

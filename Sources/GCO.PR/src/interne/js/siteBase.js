@@ -5,6 +5,7 @@
 //Traitement exécuté dès que le fichier JS est chargé.
 
 definirTrappeErreurGlboale();
+definirParametresDefautDatatables();
 
 
 //Traitement exécuté lorsque le rendu de l'interface est complété.
@@ -457,3 +458,55 @@ function obtenirOffsetTop(element) {
     }
     return offsetTop;
 }
+
+
+function definirParametresDefautDatatables() {
+
+    /* Datatables - Options par défaut */
+    if ($.fn.DataTable == undefined) {
+        return;
+    }
+
+    $.fn.DataTable.ext.pager.numbers_length = 5;
+
+    $.extend(true, $.fn.dataTable.defaults, {
+        language: $('html').attr('lang') === 'fr' ? datatables.language.french : datatables.language.english,
+        autoWidth: false,
+        lengthMenu: [1, 2, 5, 10, 25, 50],
+        pageLength: 10,
+        lengthChange: false,
+        paging: false,
+        pagingType: "full_numbers_no_ellipses",
+        searching: false,
+        ordering: true,
+        info: true,
+        responsive: {
+            details: false
+        }
+    });
+
+    //Options par défaut à définir uniquement une fois la page chargée.
+    $(document).ready(function () {
+        $.extend(true, $.fn.dataTable.defaults, {
+            "initComplete": function (settings, json) {
+
+                // Lors d'un événement de pagination, redonner le focus au tableau et repositionner l'écran au haut du tableau.
+                $(this).on('page.dt', function () {
+
+                    var table = $(this);
+
+                    // S'assurer que la table peut recevoir le focus.
+                    table.attr("tabindex", "-1");
+
+                    table.focus();
+                    window.scroll(0, table.offset().top);
+
+                    // TODO : Éventuellement remettre en place si sticky header réactivé.
+                    //var hauteurMenuFlottant = $(".sticky-top").height();
+                    //window.scroll(0, table.offset().top - hauteurMenuFlottant);
+                });
+            }
+        });
+    });
+};
+

@@ -9,26 +9,6 @@
 
 
 /*====================================================================================================*/
-/*  -70- Redéfinitions par rapport ECS
-/*====================================================================================================*/
-
-.zone-menu-identification {
-    min-height: 80px;
-}
-
-.conteneur-menu-identification {
-    min-height: 0;
-}
-
-.conteneur-entete .espaceur-conteneurs:first-of-type {
-    height: 24px;
-}
-
-.conteneur-entete .espaceur-conteneurs:last-of-type {
-    height: 32px;
-}
-
-/*====================================================================================================*/
 /*  -Z90- Ajustements pour règles SCG - À modifier dans fichier concerné
 /*====================================================================================================*/
 
