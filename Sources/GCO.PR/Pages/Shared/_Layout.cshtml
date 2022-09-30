@@ -18,9 +18,8 @@
     var h1HorsEcran = ((bool?)ViewData["H1HorsEcran"]).GetValueOrDefault();
     var h1NonRendu = ((bool?)ViewData["H1NonRendu"]).GetValueOrDefault();
     var cacherPIV = ((bool?)ViewData["CacherPIV"]).GetValueOrDefault();
-    var desactiverGoogleAnalytics = ((bool?)ViewData["DesactiverGoogleAnalytics"]).GetValueOrDefault();
     var afficherNomFormulaire = ((bool?)ViewData["AfficherNomFormulaire"]).GetValueOrDefault();
-    var afficherSelecteurLangue = (bool?)ViewData["AfficherSelecteurLangue"] ?? true;
+    var afficherSelecteurLangue = ((bool?)ViewData["AfficherSelecteurLangue"]).GetValueOrDefault();
     // Masquer le premier espaceur de la zone contenu1 si la zone d'entête n'est pas vide et que sa couleur de fond est identique à celle de la section de contenu 1.
     var zoneEnteteVide = h1NonRendu;
     var masquerPremierEspaceurContenu1 = !zoneEnteteVide && couleurFondEnteteIdentiqueContenu1;
@@ -73,11 +72,11 @@
     </script>
 
     @*Ressources à charger en priorité (on charge les fonts dans le but d'éviter les flicks *@
-    <link rel="preload" as="font" href="~/fonts/open-sans-v18-latin-regular.woff" type="font/woff" crossorigin="anonymous">
-    <link rel="preload" as="font" href="~/fonts/open-sans-v18-latin-600.woff" type="font/woff" crossorigin="anonymous">
-    <link rel="preload" as="font" href="~/fonts/open-sans-v18-latin-700.woff" type="font/woff" crossorigin="anonymous">
-    <link rel="preload" as="font" href="~/fonts/roboto-v20-latin-500.woff" type="font/woff" crossorigin="anonymous">
-    <link rel="preload" as="font" href="~/fonts/roboto-v20-latin-700.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="~/fonts/open-sans-v18-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="~/fonts/open-sans-v18-latin-600.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="~/fonts/open-sans-v18-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="~/fonts/roboto-v20-latin-500.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="~/fonts/roboto-v20-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
 
     @*Ressources moins importantes (on laisse la mécanique de chargement native du fureteur décider l'ordre de chargement normalement dans l'ordre d'inclusion)*@
     <link rel="stylesheet" href="~/css/bootstrap.min.css" data-include asp-append-version="true" />
@@ -178,7 +177,7 @@
                         <div class="container zone-menu-identification d-flex">
                             <div class="zone-identification d-flex align-items-center ml-auto">
                                 <div class="conteneur-btn-fermer-session">
-                                    <button v-cloak type="button" class="btn-fermer-session btn btn-sm btn-outline-light" id="btnDeconnexion" v-on:click="effectuerDeconnexion()">@Localizer["boutons.deconnexion"]</button>
+                                    <button v-cloak type="button" class="btn-fermer-session btn btn-sm btn-outline-light" id="btnDeconnexion" v-on:click="effectuerDeconnexion()">Déconnexion</button>
                                 </div>
                             </div>
                         </div>
@@ -351,8 +350,6 @@
     {
         <script src="~/js/base.min.js" asp-append-version="true"></script>
 
-        <script src="~/js/site.js" asp-append-version="true"></script>
-
         <script src="~/js/baseAsync.min.js" asp-append-version="true"></script>
 
         @if (afficherBlocCode)
@@ -373,37 +370,6 @@
 
     @RenderSection("Scripts", required: false)
 
-    @if (!desactiverGoogleAnalytics)
-    {
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=@settings["GoogleAnalytics:ID"]"></script>
-
-        <script>
-            // Chargement des scripts de Google Analytics et traçage de l'affichage de la page
-            // Utilisation de js pur au cas où le fureteur serait désuet
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            window.addEventListener("load", function () {
-            @{
-                // Permet de forcer dans une page des filtres google analytics spécifiques
-                ViewData.TryGetValue("gestionGoogleAnalyticSpecifique", out var outGestionGoogleAnalyticSpecifique);
-                string gestionGoogleAnalyticSpecifique = (outGestionGoogleAnalyticSpecifique?.ToString() ?? "");
-            }
-
-                gestionGoogleAnalytics('@settings["GoogleAnalytics:ID"]', '@gestionGoogleAnalyticSpecifique');
-            });
-
-            /*======================================================================================================================*/
-            /* Google analytics
-                * ga('send', 'event', [eventCategory], [eventAction], [eventLabel], [eventValue], [fieldsObject]);
-            /*======================================================================================================================*/
-            function gestionGoogleAnalytics(idGoogleAnalytics, ajouterGestionGoogleAnalyticSpecifique) {
-                gtag('js', new Date());
-                gtag('config', idGoogleAnalytics, { 'anonymize_ip': true });
-            };
-
-        </script>
-    }
 </body>
 </html>
 

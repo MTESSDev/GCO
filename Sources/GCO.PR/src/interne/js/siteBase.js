@@ -299,29 +299,6 @@ function afficherChargementEnCours(conteneur, parametres) {
     controle.css("opacity", 1);
 };
 
-//====================================================================
-//format
-//
-//Permet de modifier de façon dynamique le contenu d'une chaîne de caractères, exactement comme le fait string.format() en c#.
-//
-//Retourne : La chaîne de caractère formatée.
-//
-//Exemple(s) d'utilisation :
-// var test = "Un petit texte avec insertion dynamique. Valeur dynamique1 = {0}. Valeur dynamique2 = {1}".format(maVariableContenantValeur, maVariableContenantValeur2);
-//====================================================================
-// Vérifier si la fontion est déjà implémentée, si ce n'est pas le cas on l'implémente.
-if (!String.prototype.format) {
-    String.prototype.format = function () {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function (match, number) {
-            return typeof args[number] != 'undefined'
-                ? args[number]
-                : match
-                ;
-        });
-    };
-}
-
 /**
  * Permet de modifier une URL relative vers une page interne de l'espace client pour qu'elle respecte la langue d'affichage.
  * @param {string} url URL relative vers une page interne de l'espace client.
@@ -378,3 +355,105 @@ function obtenirElementsFocusablesFormulaire($element) {
 function genererId() {
     return Date.now().toString(36) + '-' + Math.random().toString(36).substr(2, 9);
 };
+
+
+//Fonction interne requise pour l'override de messages de validations avec nos fichiers i18n
+function s(item) {
+    if (typeof item === 'string') {
+        return item[0].toUpperCase() + item.substr(1)
+    }
+    return item
+}
+
+
+function obtenirTexteEdite(id) {
+    return '(Patch) Non défini.'
+}
+
+function obtenirDateLocale(paramDate, inclureHeure) {
+    if (!paramDate || paramDate === '' || paramDate === undefined) {
+        paramDate = Date.now()
+    }
+    var date = new Date(paramDate)
+    var d = new Date()
+
+    d.setUTCFullYear(date.getUTCFullYear())
+    d.setUTCMonth(date.getUTCMonth())
+    d.setUTCDate(date.getUTCDate())
+    if (inclureHeure) {
+        d.setUTCHours(date.getUTCHours())
+        d.setUTCMinutes(date.getUTCMinutes())
+        d.setUTCSeconds(date.getUTCSeconds())
+        d.setUTCMilliseconds(date.getUTCMilliseconds())
+    }
+    else {
+        d.setUTCHours(0)
+        d.setUTCMinutes(0)
+        d.setUTCSeconds(0)
+        d.setUTCMilliseconds(0)
+    }
+    return d
+}
+/* ===============================================================================*/
+
+
+function obtenirValeurParametreUrl(parametre) {
+    parametre = parametre.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    const expr = "[\\?&]" + parametre + "=([^&#]*)";
+    const regex = new RegExp(expr);
+    const results = regex.exec(window.location.search);
+    if (results !== null) {
+        return results[1];
+    } else {
+        return false;
+    }
+}
+
+function definirLocalStorageAvecExpiration(prefix, cle, valeur, ttl) {
+    const now = new Date()
+
+    const item = {
+        value: valeur,
+        expiry: now.getTime() + ttl,
+    }
+    localStorage.setItem(prefix + cle, JSON.stringify(item))
+}
+
+function obtenirLocalStorageAvecExpiration(prefix, cle) {
+    const itemStr = localStorage.getItem(prefix + cle)
+
+    if (!itemStr) {
+        return null
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+        localStorage.removeItem(prefix + cle)
+        return null
+    }
+    return item.value
+}
+
+function nettoyerLocalStorageAvecExpiration(prefix) {
+    for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i)
+
+        if (key.startsWith(prefix)) {
+            obtenirLocalStorageAvecExpiration('', localStorage.key(i))
+        }
+    }
+}
+
+/**
+ * Obtient le offsetTop d'un élément par rapport à la page en entier (sinon normalement c'est par rapport à son conteneur parent).
+ * @param {Object} element Élément pour lequel on doit obtenir le offsetTop.
+ */
+function obtenirOffsetTop(element) {
+    let offsetTop = 0;
+    while (element) {
+        offsetTop += element.offsetTop;
+        element = element.offsetParent;
+    }
+    return offsetTop;
+}

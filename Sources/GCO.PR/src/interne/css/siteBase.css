@@ -60,6 +60,11 @@ body {
     line-height: 1.2;
 }
 
+body p {
+    line-height: 1.5;
+}
+
+
 .hauteur-libre {
     height: auto !important;
 }
@@ -497,10 +502,6 @@ select.custom-select {
     display: block;
 }
 
-.zone-boutons {
-    margin-top: 32px;
-}
-
 /*====================================================================================================*/
 /*====================================================================================================*/
 /*  -20A- Forms (Validations)
@@ -574,6 +575,26 @@ form .field-validation-error {
     font-size: 0.75rem;
     margin-left: 4px;
     font-family: OpenSans-Regular;
+}
+
+/*====================================================================================================*/
+/*  -Z20- Forms  
+/*====================================================================================================*/
+.zone-boutons {
+    margin-top: 32px;
+}
+
+.zone-boutons button, .zone-boutons input[type="submit"] {
+    margin-right: 32px;
+    min-width: 144px; /*On veut les 3 boutons de bas de page de la même larger */
+}
+
+.zone-boutons button:last-child, .zone-boutons input[type="submit"]:last-child {
+    margin-right: 0;
+}
+
+select[data-placeholder-selected="true"] {
+    color: #647287;
 }
 
 /*====================================================================================================*/
