@@ -5,6 +5,14 @@
     max-width: var(--largeur-max-zone-texte);
 }
 
+.identification-correspondance .code-version{
+    display: flex;
+    flex-wrap: wrap;
+}
+.identification-correspondance .code-version .label {
+    margin-bottom: 32px;
+}
+
 .identification-correspondance .code-version > * {
     display: inline-block;
 }
