@@ -1,155 +1,22 @@
-﻿/*Les éléments débutants par Z doivent être ajoutés ou modifiés dans le css original de ECS */
-/*====================================================================================================*/
-/*  -Z01- Base contrôles
-/* ---------------------------------------------------------------------------------------------------*/
-/*  -Z20A- Forms (Champs textes largeurs)
-/* ---------------------------------------------------------------------------------------------------*/
-/*  -Z90- Ajustements pour règles SCG - À modifier dans fichier concerné
-/*====================================================================================================*/
-
-
-/*====================================================================================================*/
-/*  -Z90- Ajustements pour règles SCG - À modifier dans fichier concerné
-/*====================================================================================================*/
-
-.icone-champ-requis {
-    font-size: 1rem;
-    vertical-align: top;
-    font-family: OpenSans-Bold;
+﻿.identification-correspondance {
+    padding: 24px 16px;
+    border: 1px solid var(--couleur-filet-secondaire);
+    margin-bottom: 32px;
+    max-width: var(--largeur-max-zone-texte);
 }
 
-
-input.form-control:focus, select.form-control:focus {
-    outline: 3px solid #89bce5;
-    border: 2px solid #5b6476;
-}
-
-/*TODO ATTENTION ici doit s'appliquer à des pages AVEC un menu à gauche... pas pour nos autres pages 2 colonnes */
-.contenu-principal-gauche #colonneDroite, .contenu-principal-droite #colonneGauche {
-    width: 100%;
-    max-width: 288px;
-}
-
-
-@media screen and (max-width: 991px) {
-    .contenu-principal-gauche #colonneDroite, .contenu-principal-droite #colonneGauche {
-        max-width: 100%;
-    }
-}
-
-
-
-/*====================================================================================================*/
-/*  -Z91- Ajustements ECS
-/*====================================================================================================*/
-.icone-champ-requis {
-    line-height: 1;
-}
-
-/*====================================================================================================*/
-/*  -92- Animations
-/*====================================================================================================*/
-/* Fond qui fade pour indiquer un élément en chargement */
-@keyframes fond-element-chargement {
-    0% {
-        opacity: .1;
-    }
-
-    50% {
-        opacity: .25;
-    }
-
-    100% {
-        opacity: .1;
-    }
-}
-
-.fond-element-chargement {
-    display: block;
-    background-color: #444;
-    height: 100%;
-    width: 100%;
-    opacity: .1;
-    animation: fond-element-chargement 1.5s infinite;
-}
-
-/*====================================================================================================*/
-/*  -93- Bloc de code
-/*====================================================================================================*/
-.bloc-code {
-    position: relative;
-}
-
-.bloc-code > pre {
-    margin-bottom: 64px;
-    border-radius: 6px;
-}
-
-.bloc-code .texte-confirmation-copie {
+.identification-correspondance .code-version > * {
     display: inline-block;
-    position: absolute;
-    color: #fff;
-    top: 20px;
-    right: 66px;
-    font-weight: 700;
-    opacity: 0;
-    background-color: rgb(28, 27, 27);
-    transition: opacity .5s ease-in-out;
 }
 
-.bloc-code .texte-confirmation-copie.visible {
-    opacity: 1;
+.zone-boutons-bas-page {
+    margin-top: 80px;
 }
 
-.bloc-code button {
-    position: absolute;
-    right: 8px;
-    top: 8px;
+.zone-boutons-bas-page .utd-btn {
+    margin-right: 32px;
 }
 
-.bloc-code .utd-btn.secondaire:not([disabled]):hover, pre.bloc-code .utd-btn.secondaire:not([disabled]):focus {
-    background-color: rgba(255,255,255, 0.85);
-    box-shadow: 0 0 0 2px #4a98d9;
+.zone-boutons-bas-page .utd-btn:last-of-type {
+    margin-right: 0;
 }
-
-.bloc-code .utd-btn.secondaire:active {
-    background-color: rgba(255,255,255, 1);
-    box-shadow: 0 0 0 2px #4a98d9;
-}
-/*====================================================================================================*/
-/*  -99- À positionner
-/*====================================================================================================*/
-    .card.section-secondaire {
-        border: 0;
-    }
-
-    .card.section-secondaire .card-title {
-        border: 1px solid var(--couleur-filet-secondaire);
-        background-color: var(--couleur-fond-gris);
-    }
-
-    .card.section-secondaire .card-title:focus-within {
-        outline: 2px solid #89bce5;
-        border: 2px solid #5b6476;
-        margin-bottom: 2px;
-        margin-left: -1px;
-    }
-
-    .card.section-secondaire .card-title:focus-within + .collapse .card-body {
-        padding-top: 22px;
-    }
-
-    .card.section-secondaire .card-title a:focus {
-        outline: 0;
-        border: 0;
-    }
-
-    .card.section-secondaire .card-body {
-        border: 1px solid var(--couleur-filet-secondaire);
-        border-top: 0;
-    }
-
-.card-title h1, .card-title h2, .card-title h3, .card-title h4, .card-title h5, .card-title h6 { /* TODO à modifier dans ECS */
-    margin: 0;
-}
-

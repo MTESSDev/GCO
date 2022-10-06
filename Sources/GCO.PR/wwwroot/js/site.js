@@ -1,3 +1,14 @@
+function definirZoneIdentificationGabarit(identifiant) {
+    const gabarits = obtenirGabarits()
+
+    const gabarit = gabarits.find((g) => g.code === identifiant)
+
+    if (gabarit) {
+        document.getElementById('descriptionCorrespondance').textContent = gabarit.desc
+        document.getElementById('versionCouranteCorrespondance').textContent = gabarit.v
+    }
+}
+
 function obtenirGabarits() {
     return [{ "code": "ADD", "desc": "Avis de convocation et demande de documents", "v": "1" },
     { "code": "AVI", "desc": "Avis de convocation", "v": "1" },

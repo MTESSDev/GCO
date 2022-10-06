@@ -10,19 +10,69 @@
 
 @section style{
     <style>
+        h2{
+            margin-top: 16px;
+        }
 
+        .version-scenario{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .version{
+            margin-right: 32px;
+        }
     </style>
 }
 
-<div>
-        <div id="multiEmbedPdf"></div>
-        <div id="folder-info"></div>
+<div class="identification-correspondance page-texte">
+    <div class="code-version">
+        <span class="label">Identifiant :</span>
+        <span class="mr-32">@Model.CodeCorrespondance</span>
+        <span class="label ml-32">Version courante :</span>
+        <span id="versionCouranteCorrespondance"></span>
+    </div>
 
-    <!--<button class="utd-btn primaire compact" id="addToFolder">Choisir répertoire local</button>-->
-
-    <button class="utd-btn primaire compact" id="getNewFileHandleButton">Nouveau Gabarit</button>
-    <button class="utd-btn primaire compact" id="getFileHandleButton">Extraire</button>
+    <div class="mt-16">
+        <span class="label utd-d-inline-block">Description</span>
+        <span class="utd-d-block" id="descriptionCorrespondance"></span>
+    </div>
 </div>
+
+
+<div class="version-scenario">
+    <div class="utd-form-group version">
+        <label for="version">Version</label>
+        <select name="version" id="version" class="utd-form-control">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+
+    <div class="utd-form-group">
+        <label for="scenario">Scénario</label>
+        <select name="scenario" id="scenario" class="utd-form-control">
+            <option value="1">Description scénario 1</option>
+            <option value="2">Description scénario 2</option>
+            <option value="3">Description scénario 3</option>
+        </select>
+    </div>
+</div>
+
+
+<h2>Aperçu du rendu</h2>        
+<div>        
+    <div id="multiEmbedPdf"></div>
+    <div id="folder-info"></div>
+</div>
+
+<!--<button class="utd-btn primaire compact" id="addToFolder">Choisir répertoire local</button>-->
+<div class="zone-boutons-bas-page">
+    <button type="button" class="utd-btn secondaire" id="getNewFileHandleButton">Nouveau Gabarit</button>
+    <button type="button" class="utd-btn secondaire" id="getFileHandleButton">Extraire</button>
+    <button type="button" class="utd-btn secondaire" id="btnPublier">Publier</button>
+</div> 
 
 @section scripts{
 
@@ -31,6 +81,15 @@
     <script>
        let fichierExtrait;
        let lastModified = 0;
+
+
+        definirZoneIdentificationGabarit('@Model.CodeCorrespondance')
+        definirVersionSelectionnee()
+
+
+        function definirVersionSelectionnee() {
+            document.getElementById('version').value = document.getElementById('versionCouranteCorrespondance').innerText
+        }
 
         function nouveauFichierGabarit()
         {

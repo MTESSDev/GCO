@@ -7,27 +7,17 @@
 
 @section style{
     <style>
-        .encadre{
-            padding: 24px 16px;
-            border: 1px solid var(--couleur-filet-secondaire);
-        }
-        .code-version > *{
-            display: inline-block;
-        }
-        .zone-boutons{
-            margin-top: 80px;
-        }
     </style>
 }
 
 @section colonneGauche {
 
-    <div class="encadre mb-32">
+    <div class="identification-correspondance">
         <div class="code-version">
             <span class="label">Identifiant :</span>
             <span class="mr-32">@Model.CodeCorrespondance</span>
             <span class="label ml-32">Version courante :</span>
-            <span id="versionCouranteCorrespondance">2</span>
+            <span id="versionCouranteCorrespondance"></span>
         </div>
 
         <div class="mt-16">
@@ -49,8 +39,8 @@
         <button type="button" class="utd-btn secondaire compact">Ajouter</button>
     </utd-accordeon>
 
-    <div class="zone-boutons">
-        <button type="button" class="utd-btn primaire">Accéder au gabarit</button>
+    <div class="zone-boutons-bas-page">
+        <a class="utd-btn primaire" asp-page="/Gabarit" asp-route-c="@Model.CodeCorrespondance">Accéder au gabarit</a>
     </div>
     
 }
@@ -61,19 +51,7 @@
 
     <script>
 
-        definirInfosGabarit()
-
-
-        function definirInfosGabarit() {
-            const gabarits = obtenirGabarits()
-
-            const gabarit = gabarits.find((g) => g.code === '@Model.CodeCorrespondance')
-
-            if (gabarit){
-                document.getElementById('descriptionCorrespondance').textContent = gabarit.desc
-                document.getElementById('versionCouranteCorrespondance').textContent = gabarit.v
-            }
-        }
+        definirZoneIdentificationGabarit('@Model.CodeCorrespondance')
 
     </script>
 
