@@ -1,21 +1,80 @@
 ﻿@page "{handler?}"
 @model GCO.PR.Pages.GCOCorrespondanceModel
 @{
-    ViewData["Title"] = "Gérer la correspondance " + Model.CodeCorrespondance;
+    Layout = "_Layout2Colonnes";
+    ViewData["Title"] = "Gérer une correspondance";
 }
 
 @section style{
     <style>
-
+        .encadre{
+            padding: 24px 16px;
+            border: 1px solid var(--couleur-filet-secondaire);
+        }
+        .code-version > *{
+            display: inline-block;
+        }
+        .zone-boutons{
+            margin-top: 80px;
+        }
     </style>
 }
 
-<div>
-</div>
+@section colonneGauche {
+
+    <div class="encadre mb-32">
+        <div class="code-version">
+            <span class="label">Identifiant :</span>
+            <span class="mr-32">@Model.CodeCorrespondance</span>
+            <span class="label ml-32">Version courante :</span>
+            <span id="versionCouranteCorrespondance">2</span>
+        </div>
+
+        <div class="mt-32">
+            <span class="label utd-d-inline-block">Description</span>
+            <span class="utd-d-block" id="descriptionCorrespondance"></span>
+        </div>
+    </div>
+
+
+
+    <utd-accordeon titre="Historique des versions">
+        <p>... À VENIR ....</p>
+        <p>Ici un tableau qui affiche l'historique des versions.</p>
+    </utd-accordeon>
+
+    <utd-accordeon titre="Scénarios">
+        <p>... À VENIR ....</p>
+        <p>Ici un tableau qui affiche les différents scénarios. Il est possible de modifier, supprimer et ajouter un scénario.</p>
+        <button type="button" class="utd-btn secondaire compact">Ajouter</button>
+    </utd-accordeon>
+
+    <div class="zone-boutons">
+        <button type="button" class="utd-btn primaire">Accéder au gabarit</button>
+    </div>
+    
+}
+
+
 
 @section scripts{
 
     <script>
+
+        definirInfosGabarit()
+
+
+        function definirInfosGabarit() {
+            const gabarits = obtenirGabarits()
+
+            const gabarit = gabarits.find((g) => g.code === '@Model.CodeCorrespondance')
+
+            if (gabarit){
+                document.getElementById('descriptionCorrespondance').textContent = gabarit.desc
+                document.getElementById('versionCouranteCorrespondance').textContent = gabarit.v
+            }
+        }
+
     </script>
 
 }
