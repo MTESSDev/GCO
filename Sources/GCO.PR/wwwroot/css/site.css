@@ -10,7 +10,7 @@
     flex-wrap: wrap;
 }
 .identification-correspondance .code-version .label {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 }
 
 .identification-correspondance .code-version > * {
