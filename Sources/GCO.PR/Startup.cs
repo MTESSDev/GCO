@@ -87,11 +87,11 @@ namespace GCO.PR
 
             services.AddSingleton<IDocLib>(DocLib.Instance);
 
-            services.AddHsts(options =>
+            /*services.AddHsts(options =>
             {
                 options.IncludeSubDomains = true;
                 options.MaxAge = TimeSpan.FromDays(365);
-            });
+            });*/
 
             /*var hosts = Configuration["AllowedHosts"]?
                    .Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
