@@ -41,28 +41,56 @@ namespace GCO.PR.Controllers
         [HttpPost]
         public async Task<IActionResult> RemplirGabaritWord([FromBody] JsonElement json, [FromQuery] string type)
         {
+            var scenario = json.GetProperty("scenario").GetString() ?? "";
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            switch (scenario)
+            {
+                case "1":
+                    dict = new Dictionary<string, object>() {
+                                        { "prenom", "Réjeanne" },
+                                        { "nom", "Nadeau" },
+                                        { "noCivique", "249" },
+                                        { "rue", "rue De l'union" },
+                                        { "ville", "Québec" },
+                                        { "province", "QC" },
+                                        { "codePostal", "G01 9K6" },
+                                        { "date_emission", new DateTime(2022,09,02) },
+                                        { "montant", 2154.54m },
+                                        { "dateProd", DateTime.Now } };
+                    break;
+                case "2":
+                    dict = new Dictionary<string, object>() {
+                                        { "prenom", "Réjeanne" },
+                                        { "nom", "Nadeau" },
+                                        { "noCivique", "249" },
+                                        { "rue", "rue De l'union" },
+                                        { "ville", "Québec" },
+                                        { "province", "QC" },
+                                        { "enfants", new object[] { new Dictionary<string, object>() {
+                                                    {"nom", "Noémie"}, {"datenaissance", "2006-08-11"}, {"nam", "NADN06082312"}
+                                                }, new Dictionary<string, object>() {
+                                                    {"nom", "Charles"}, {"datenaissance", "2001-04-04"}, {"nam", "NADC04042312"}
+                                                }
+                                            }
+                                        },
+                                        { "codePostal", "G01 9K6" },
+                                        { "date_emission", new DateTime(2022,09,02) },
+                                        { "montant", 2154.54m },
+                                        { "dateProd", DateTime.Now } };
+                    break;
+            }
 
             var retour = await RemplirGabaritWord(new EntrantGenererDocument()
             {
                 Gabarit = Convert.FromBase64String(json.GetProperty("fichier").GetString()),
-                Donnees = new Dictionary<string, object>() { 
-                            { "prenom", "Réjeanne" }, 
-                            { "nom", "Nadeau" }, 
-                            { "noCivique", "249" }, 
-                            { "rue", "rue De l'union" }, 
-                            { "ville", "Québec" }, 
-                            { "province", "QC" }, 
-                            { "codePostal", "G01 9K6" }, 
-                            { "date_emission", new DateTime(2022,09,02) }, 
-                            { "montant", 2154.54m }, 
-                            { "dateProd", DateTime.Now } },
-                Options = new Options() { NomFichier = "test." + type }
+                Donnees = dict,
+                Options = new Options() { NomFichier = "test." + type, IgnorerChampsAbsent = true  }
             });
 
             return Ok(new { Fichier = retour });
         }
 
-        
+
         private async Task<byte[]> RemplirGabaritWord(EntrantGenererDocument donnees)
         {
             var urlApi = "http://localhost:12444/";
