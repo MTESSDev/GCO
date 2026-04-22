@@ -98,7 +98,7 @@ Le paramètre `modeImpression` détermine ce qu'il advient du PDF après sa prod
 
 | Environnement | URL de base | Usage |
 |---------------|-------------|-------|
-| Satellite | `https://master-webapi.intra-gco.sa.mes.reseau.intra` | Développement |
+| Satellite | `https://release-webapi.intra-gco.sa.mes.reseau.intra` | Développement |
 | Acceptation | `https://release-webapi.intra-gco.ac.mes.reseau.intra` | Validation |
 | Intégration Tech. | `https://release-webapi.intra-gco.it.mes.reseau.intra` | Tests d'intégration |
 | Production | `https://webapi.intra-gco.mes.reseau.intra` | Production |
