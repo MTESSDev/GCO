@@ -1,14 +1,12 @@
-# 08 — Exemples de requêtes
+# Exemples de requêtes
 
-[[_TOC_]]
+Remplacez les valeurs entre `{accolades}` par vos propres valeurs.
 
-Les exemples ci-dessous illustrent les cas d'usage les plus courants. Remplacez les valeurs entre `{accolades}` par vos propres valeurs.
+&nbsp;
 
----
+## Aperçu d'une correspondance (PREVIEW)
 
-## Exemple 1 — Aperçu (PREVIEW)
-
-Produire un PDF et le recevoir directement, sans impression ni dépôt GED.
+Recevoir le PDF directement, sans impression ni dépôt GED.
 
 ```http
 POST /systeme/correspondances/generer HTTP/1.1
@@ -30,19 +28,18 @@ Accept: application/pdf
   "donneesCorrespondance": {
     "NomDestinataire": "Dupont, Jean",
     "Adresse": "123, rue Principale, Québec (Québec)  G1A 0A0",
-    "MontantAide": 500.00,
-    "DateDecision": "22 avril 2026"
+    "MontantAide": 500.00
   }
 }
 ```
 
 **Réponse :** `200 OK` avec le binaire PDF dans le corps.
 
----
+&nbsp;
 
-## Exemple 2 — Impression en lot avec dépôt GED (LOT)
+## Impression en lot avec dépôt GED (LOT)
 
-Cas d'usage le plus courant pour les systèmes de mission.
+Cas d'usage le plus courant.
 
 ```http
 POST /systeme/correspondances/generer HTTP/1.1
@@ -66,8 +63,7 @@ Accept: application/json
     "NomDestinataire": "Dupont, Jean",
     "Adresse": "123, rue Principale, Québec (Québec)  G1A 0A0",
     "MontantAide": 500.00,
-    "DateDecision": "22 avril 2026",
-    "CodeReference": "ASF-2026-00042"
+    "DateDecision": "22 avril 2026"
   },
   "indDepotGED": true,
   "metadonneesDocument": {
@@ -79,8 +75,7 @@ Accept: application/json
     "sujetFrancais": "Avis de décision — Aide sociale",
     "sujetAnglais": "Decision Notice — Social Assistance",
     "informationsSupplementaires": [
-      { "cle": "NumeroDossier", "valeur": "2026-00042" },
-      { "cle": "TypeDecision", "valeur": "ATTRIBUTION" }
+      { "cle": "NumeroDossier", "valeur": "2026-00042" }
     ]
   }
 }
@@ -95,11 +90,11 @@ Accept: application/json
 }
 ```
 
----
+&nbsp;
 
-## Exemple 3 — Lot différé (LOTDIFF)
+## Lot différé (LOTDIFF)
 
-Correspondance retenue jusqu'au déclenchement manuel par GCO224.
+Correspondance retenue jusqu'au déclenchement manuel.
 
 ```http
 POST /systeme/correspondances/generer HTTP/1.1
@@ -127,11 +122,11 @@ Accept: application/json
 }
 ```
 
----
+&nbsp;
 
-## Exemple 4 — Document numérique (NUMERIQUE)
+## Document numérique uniquement (NUMERIQUE)
 
-Correspondance déposée uniquement dans la GED, sans impression.
+Dépôt dans la GED, aucune impression.
 
 ```http
 POST /systeme/correspondances/generer HTTP/1.1
@@ -166,11 +161,11 @@ Accept: application/pdf
 }
 ```
 
----
+&nbsp;
 
-## Exemple 5 — Impression immédiate (IMMEDIAT)
+## Impression immédiate (IMMEDIAT)
 
-Impression sur l'imprimante configurée dans le profil de l'utilisateur.
+Impression sur l'imprimante du profil d'un agent. Requiert l'en-tête `x-code-nt`.
 
 ```http
 POST /systeme/correspondances/generer HTTP/1.1
@@ -199,11 +194,11 @@ Accept: application/json
 }
 ```
 
-> L'utilisateur `j.dupont` doit avoir une imprimante réseau configurée dans son profil GCO. Si ce n'est pas le cas, GCO envoie un courriel à cet utilisateur et retourne l'erreur `GCO212005`.
+> L'utilisateur `j.dupont` doit avoir une imprimante configurée dans son profil GCO.
 
----
+&nbsp;
 
-## Exemple 6 — Avec identifiant unique de document fourni
+## Avec identifiant unique de document fourni
 
 Quand votre système possède déjà un identifiant GED unique (provenant de l'IDE).
 
@@ -232,7 +227,7 @@ Accept: application/json
     "identifiantUniqueDocument": 1234567890123,
     "individusLies": [7777777777],
     "ligneAffaire": "ASF",
-    "sujetFrancais": "Avis — Confirmation d'inscription"
+    "sujetFrancais": "Confirmation d'inscription"
   }
 }
 ```
@@ -246,22 +241,13 @@ Accept: application/json
 }
 ```
 
----
+&nbsp;
 
-## Utilisation avec Swagger / Scalar
+## Tester via Swagger
 
-L'interface interactive est disponible à :
+L'interface interactive est disponible à `{url-de-base}/Swagger/index.html`.
 
-| Environnement | URL |
-|---------------|-----|
-| Satellite | `https://master-webapi.intra-gco.sa.mes.reseau.intra/Swagger/index.html` |
-| Acceptation | `https://release-webapi.intra-gco.ac.mes.reseau.intra/Swagger/index.html` |
-| Intégration Tech. | `https://release-webapi.intra-gco.it.mes.reseau.intra/Swagger/index.html` |
-| Production | `https://webapi.intra-gco.mes.reseau.intra/Swagger/index.html` |
-
-Pour tester depuis Swagger :
-
-1. Cliquez sur **Authorize** et entrez `Api-Key {votre-cle}` dans le champ Bearer.
-2. Ajoutez `x-client-id` dans les en-têtes de la requête.
-3. Naviguez vers `POST /systeme/correspondances/generer`.
-4. Utilisez un des exemples JSON ci-dessus comme corps de requête.
+1. Cliquez sur **Authorize** et entrez `Api-Key {votre-cle}`;
+2. Naviguez vers `POST /systeme/correspondances/generer`;
+3. Ajoutez `x-client-id` dans les en-têtes;
+4. Copiez un des exemples ci-dessus comme corps de requête.
