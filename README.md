@@ -4,7 +4,7 @@
 
 Un service centralisé du MESS qui permet à vos systèmes de mission de **produire des correspondances** (lettres, avis, formulaires) à partir de gabarits Word, de les imprimer en lot et de les déposer automatiquement dans la GED.
 
-[Consulter la vue d'ensemble de l'architecture d'intégration](P700U/vue-densemble.md).
+[Consulter la vue d'ensemble de l'architecture d'intégration](Documentation/vue-densemble.md).
 
 &nbsp;
 
@@ -27,7 +27,7 @@ Avant d'appeler GCO, votre équipe doit avoir complété les étapes suivantes d
 2. Générez une nouvelle clé en sélectionnant le type d'environnement souhaité;
 3. Notez la clé générée et le **Client Id** associé — la clé ne sera plus affichable intégralement par la suite.
 
-[Consulter le guide complet d'authentification](P700U/authentification.md).
+[Consulter le guide complet d'authentification](Documentation/authentification.md).
 
 &nbsp;
 
@@ -43,7 +43,7 @@ Content-Type: application/json
 Accept: application/json
 ```
 
-[Consulter le guide complet de GCO212](P700U/generer-correspondance.md).
+[Consulter le guide complet de GCO212](Documentation/generer-correspondance.md).
 
 &nbsp;
 
@@ -57,7 +57,7 @@ Le paramètre `modeImpression` détermine ce qu'il advient du PDF après sa prod
 4. `IMMEDIAT` — Impression locale sur l'imprimante du profil de l'utilisateur;
 5. `NUMERIQUE` — Dépôt dans la GED uniquement, sans impression.
 
-[Consulter la description détaillée de chaque mode](P700U/modes-de-production.md).
+[Consulter la description détaillée de chaque mode](Documentation/modes-de-production.md).
 
 &nbsp;
 
@@ -67,21 +67,21 @@ Le paramètre `modeImpression` détermine ce qu'il advient du PDF après sa prod
 2. Fournissez l'objet `metadonneesDocument` avec au moins un identifiant (individu, clé de repérage ou id unique GED);
 3. Vérifiez que les attributs `GED:Type` et `GED:LigneAffaire` sont configurés sur la version déployée dans GCO.
 
-[Consulter le guide de dépôt GED](P700U/depot-ged.md).
+[Consulter le guide de dépôt GED](Documentation/depot-ged.md).
 
 &nbsp;
 
 ### Consulter les références
 
-- [Référence complète des modèles JSON](P700U/reference-modeles.md) — schémas, énumérations, contraintes de validation;
-- [Codes d'erreur et dépannage](P700U/codes-erreur.md) — erreurs HTTP, codes fonctionnels, conseils;
-- [Exemples de requêtes](P700U/exemples.md) — exemples prêts à l'emploi pour tous les modes.
+- [Référence complète des modèles JSON](Documentation/reference-modeles.md) — schémas, énumérations, contraintes de validation;
+- [Codes d'erreur et dépannage](Documentation/codes-erreur.md) — erreurs HTTP, codes fonctionnels, conseils;
+- [Exemples de requêtes](Documentation/exemples.md) — exemples prêts à l'emploi pour tous les modes.
 
 &nbsp;
 
 ## Vous avez une question sur l'intégration?
 
-1. Consultez les [codes d'erreur et conseils de dépannage](P700U/codes-erreur.md);
+1. Consultez les [codes d'erreur et conseils de dépannage](Documentation/codes-erreur.md);
 2. Consultez la [spécification fonctionnelle détaillée de GCO212](GCO212.md);
 3. Contactez l'équipe GCO via votre canal de support habituel.
 
