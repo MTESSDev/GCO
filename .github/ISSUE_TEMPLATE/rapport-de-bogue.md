@@ -25,10 +25,6 @@ Une description courte et claire du comportement attendu.
 **Captures écran**
 Si applicable, des captures d'écran démontrant le problème.
 
-**Appareil utilisé/fureteur utilisé**
- - OS: (ex: Windows 10)
- - Fureteur: (ex: Chrome 111)
-
 **Autres informations**
-- Version de l'application FRW (inscrite au bas de la page)
+- Dans quel environnement le bogue s'est-il produit?
 - Date/heure de l'événement (au plus précis possible)
