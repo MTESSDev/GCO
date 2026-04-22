@@ -38,7 +38,7 @@ x-client-id: {votre-client-id}
 
 ```http
 POST /systeme/correspondances/generer HTTP/1.1
-Host: master-webapi.intra-gco.sa.mes.reseau.intra
+Host: release-webapi.intra-gco.sa.mes.reseau.intra
 Authorization: Api-Key 3f9a2b1c-d4e5-4f6a-b7c8-9d0e1f2a3b4c
 x-client-id: ASF-SAT-001
 Content-Type: application/json

@@ -10,7 +10,7 @@ Recevoir le PDF directement, sans impression ni dépôt GED.
 
 ```http
 POST /systeme/correspondances/generer HTTP/1.1
-Host: master-webapi.intra-gco.sa.mes.reseau.intra
+Host: release-webapi.intra-gco.sa.mes.reseau.intra
 Authorization: Api-Key {votre-cle-api}
 x-client-id: {votre-client-id}
 Content-Type: application/json
