@@ -1,3 +1,4 @@
+> # VERSION EN TRAVAIL, NE PAS CONSULTER POUR LE MOMENT.
 # Modes de production
 
 ## Quel mode choisir?

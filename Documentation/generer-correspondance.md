@@ -1,3 +1,4 @@
+> # VERSION EN TRAVAIL, NE PAS CONSULTER POUR LE MOMENT.
 # Générer une correspondance (GCO212)
 
 ## Qu'est-ce que ce service fait?

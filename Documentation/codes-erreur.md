@@ -1,3 +1,4 @@
+> # VERSION EN TRAVAIL, NE PAS CONSULTER POUR LE MOMENT.
 # Codes d'erreur et dépannage
 
 ## Format des réponses d'erreur

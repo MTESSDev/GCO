@@ -1,3 +1,4 @@
+> # VERSION EN TRAVAIL, NE PAS CONSULTER POUR LE MOMENT.
 # Vue d'ensemble de l'intégration GCO
 
 ## Qu'est-ce que GCO?
